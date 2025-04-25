@@ -37,7 +37,7 @@ function RegisterForm({ setIsLoggedIn, setUser }) {
                 ? { name, email, phone, location, password }
                 : { email, password };
             console.log("Sending payload:", payload);
-            const response = await axios.post(`http://localhost:8000${endpoint}`, payload);
+            const response = await axios.post(`https://mern-backend-vto0.onrender.com${endpoint}`, payload);
             if (response.data.success) {
                 setStatus(isSignup ? "Signup Successful!" : "Login Successful!");
                 setUser(response.data.user);

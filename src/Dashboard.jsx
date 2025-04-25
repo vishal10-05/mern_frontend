@@ -19,7 +19,7 @@ function Dashboard({ setIsLoggedIn, user }) {
 
     const fetchRooms = async () => {
         try {
-            const response = await axios.get("http://localhost:8000/viewRooms", {
+            const response = await axios.get("https://mern-backend-vto0.onrender.com/viewRooms", {
                 params: { email: user.email }
             });
             setRooms(response.data);
@@ -52,10 +52,10 @@ function Dashboard({ setIsLoggedIn, user }) {
         try {
             const payload = { ...room, createdBy: user.email };
             if (editId) {
-                await axios.put(`http://localhost:8000/editRoom/${editId}`, payload);
+                await axios.put(`https://mern-backend-vto0.onrender.com/editRoom/${editId}`, payload);
                 toast.success("Room Updated Successfully");
             } else {
-                await axios.post("http://localhost:8000/addRoom", payload);
+                await axios.post("https://mern-backend-vto0.onrender.com/addRoom", payload);
                 toast.success("Room Added Successfully");
             }
             setRoom({ guestName: "", hotel: "", roomNumber: "" });
@@ -76,7 +76,7 @@ function Dashboard({ setIsLoggedIn, user }) {
     const handleDelete = async (id) => {
         if (window.confirm("Are you sure you want to delete this room?")) {
             try {
-                await axios.delete(`http://localhost:8000/deleteRoom/${id}`);
+                await axios.delete(`https://mern-backend-vto0.onrender.com/deleteRoom/${id}`);
                 toast.success("Room Deleted Successfully");
                 await fetchRooms();
             } catch (error) {
